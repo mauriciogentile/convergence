@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Idb.CommonServices.Util.Diagnostic;
@@ -47,27 +48,10 @@ namespace Idb.Sec.Convergence.Daemon
                     {
                         await client.ExecuteActionAsync(x.WorkflowId, action, state);
                         var cd = await client.GetCustomDataAsync(x.WorkflowId);
-                        var newEntry = new
+                        if (TryAddDistribution(x, cd))
                         {
-                            distributedOn = x.DistributedOn,
-                            committeeId = x.CommitteeId,
-                            pipeline = x.Pipeline,
-                            version = x.Version,
-                            versionId = x.VersionId,
-                            procedure = x.Procedure
-                        };
-                        if (Helpers.DoesPropertyExist(cd, "distributions"))
-                        {
-                            //cd.distribution;
-                            var list = cd["distributions"] as IList;
-                            if (list != null)
-                                list.Add(newEntry);
+                            await client.SetCustomDataAsync(x.WorkflowId, cd);
                         }
-                        else
-                        {
-                            cd["distributions"] = new[] { newEntry };
-                        }
-                        await client.SetCustomDataAsync(x.WorkflowId, cd);
                     }
                     catch (Exception exception)
                     {
@@ -75,6 +59,48 @@ namespace Idb.Sec.Convergence.Daemon
                     }
                 }
             }
+        }
+
+        static bool TryAddDistribution(DistributionRecord record, dynamic cd)
+        {
+            var newEntry = new
+            {
+                distributedOn = record.DistributedOn,
+                committeeId = record.CommitteeId,
+                pipeline = record.Pipeline,
+                version = record.Version + 1,
+                versionId = record.VersionId,
+                procedure = record.Procedure
+            };
+            if (!Helpers.DoesPropertyExist(cd, "distributions"))
+            {
+                cd["distributions"] = new[] { newEntry };
+                return true;
+            }
+
+            var list = cd["distributions"] as IList<object>;
+            if (list != null)
+            {
+                var discard = false;
+                list.ToList().ForEach(x =>
+                {
+                    var dict = x as Dictionary<string, object>;
+                    if (dict != null && Equals(dict["version"], newEntry.version) && Equals(dict["versionId"], newEntry.versionId))
+                    {
+                        discard = true;
+                    }
+                });
+                if (discard)
+                {
+                    return false;
+                }
+                list.Add(newEntry);
+            }
+            else
+            {
+                cd["distributions"] = new[] { newEntry };
+            }
+            return true;
         }
     }
 }
