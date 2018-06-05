@@ -1,0 +1,3 @@
+/src/Daemon/bin
+*.suo
+/src/Daemon/obj
