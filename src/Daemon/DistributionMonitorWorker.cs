@@ -47,9 +47,14 @@ namespace Idb.Sec.Convergence.Daemon
                     string currentState = null;
                     try
                     {
+                        Logger.Debug(string.Format("Processing pipeline '{0}' for committee '{1}' on workflow '{2}'", x.Pipeline, x.CommitteeId, x.WorkflowId));
                         var instance = await client.GetWorkflowInstanceAsync(x.WorkflowId);
                         currentState = instance.CurrentState;
-                        if (currentState != InitialDistrState && currentState != LastDistrState) continue;
+                        if (currentState != InitialDistrState && currentState != LastDistrState)
+                        {
+                            Logger.Debug(string.Format("Skipping pipeline '{0}' for committee '{1}' on workflow '{2}'", x.Pipeline, x.CommitteeId, x.WorkflowId));
+                            continue;
+                        }
                         var cd = await client.GetCustomDataAsync(x.WorkflowId);
                         if (!TryAddDistribution(x, cd)) continue;
                         await client.SetCustomDataAsync(x.WorkflowId, cd);
