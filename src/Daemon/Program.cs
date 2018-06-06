@@ -34,7 +34,7 @@ namespace Idb.Sec.Convergence.Daemon
 
         static IEnumerable<IWorker> GetWorkers(ILogger logger)
         {
-            var minDate = DateTime.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_MIN_DATE"]);
+            var lastDays = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_LAST_DAYS"]);
             var top = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_MAX_RESULTS"]);
             var ditributionSleep = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_SLEEP_IN_MIN"]);
             var state1 = ConfigurationManager.AppSettings["DISTRIBUTION_INITIAL_STATE"];
@@ -57,7 +57,7 @@ namespace Idb.Sec.Convergence.Daemon
 
             var monitorWorker = new DistributionMonitorWorker(connString, factory, logger)
             {
-                MinDateToMonitor = minDate,
+                LastDays = lastDays,
                 SleepPeriod = TimeSpan.FromMinutes(ditributionSleep),
                 MaxResults = top,
                 InitialDistrAction = action1,

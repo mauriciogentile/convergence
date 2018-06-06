@@ -16,7 +16,7 @@ namespace Idb.Sec.Convergence.Daemon
         private readonly string _connString;
         private readonly Func<IWfeClient> _clientFactory;
 
-        public DateTime MinDateToMonitor { get; set; }
+        public int LastDays { get; set; }
         public int MaxResults { get; set; }
         public string InitialDistrState { get; set; }
         public string InitialDistrAction { get; set; }
@@ -35,7 +35,7 @@ namespace Idb.Sec.Convergence.Daemon
             using (var connection = new SqlConnection(_connString))
             {
                 var p = new DynamicParameters();
-                p.Add("@MIN_DATE", MinDateToMonitor, DbType.DateTime);
+                p.Add("@MIN_DATE", DateTime.Now.AddDays(LastDays * -1), DbType.DateTime);
                 p.Add("@TOP", MaxResults, DbType.Int32);
 
                 var command = new CommandDefinition("[DocumentDistribution_Read]", p, null, null, CommandType.StoredProcedure);
