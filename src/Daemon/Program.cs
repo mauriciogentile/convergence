@@ -37,20 +37,34 @@ namespace Idb.Sec.Convergence.Daemon
             var minDate = DateTime.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_MIN_DATE"]);
             var top = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_MAX_RESULTS"]);
             var ditributionSleep = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_SLEEP_IN_MIN"]);
+            var state1 = ConfigurationManager.AppSettings["DISTRIBUTION_INITIAL_STATE"];
+            var action1 = ConfigurationManager.AppSettings["DISTRIBUTION_INITIAL_ACTION"];
+            var state2 = ConfigurationManager.AppSettings["DISTRIBUTION_LAST_STATE"];
+            var action2 = ConfigurationManager.AppSettings["DISTRIBUTION_LAST_ACTION"];
             var connString = ConfigurationManager.ConnectionStrings["Agenda"].ConnectionString;
             var wfeApiUrl = ConfigurationManager.ConnectionStrings["WfeApiUrl"].ConnectionString;
-            var username = ConfigurationManager.AppSettings["WfeApiUsername"];
-            var password = ConfigurationManager.AppSettings["WfeApiPassword"];
+            var clientId = ConfigurationManager.AppSettings["WFE.ApiClientId"];
+            var clientSecret = ConfigurationManager.AppSettings["WFE.ApiClientSecret"];
+            var username = ConfigurationManager.AppSettings["WFE.ApiUsername"];
+            var password = ConfigurationManager.AppSettings["WFE.ApiPassword"];
 
             var factory = new Func<IWfeClient>(() =>
             {
                 var client = new Client(wfeApiUrl);
-                client.Login(username, password);
+                client.Login(clientId, clientSecret, username, password);
                 return client;
             });
 
-            var monitorWorker = new DistributionMonitorWorker(minDate, top, connString,
-                TimeSpan.FromMinutes(ditributionSleep), factory, logger);
+            var monitorWorker = new DistributionMonitorWorker(connString, factory, logger)
+            {
+                MinDateToMonitor = minDate,
+                SleepPeriod = TimeSpan.FromMinutes(ditributionSleep),
+                MaxResults = top,
+                InitialDistrAction = action1,
+                InitialDistrState = state1,
+                LastDistrAction = action2,
+                LastDistrState = state2
+            };
 
             return new List<IWorker>(new IWorker[] { monitorWorker });
         }

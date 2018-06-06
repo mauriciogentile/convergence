@@ -13,18 +13,19 @@ namespace Idb.Sec.Convergence.Daemon
 {
     public class DistributionMonitorWorker : Worker
     {
-        private readonly DateTime _minDate;
-        private readonly int _top;
         private readonly string _connString;
         private readonly Func<IWfeClient> _clientFactory;
 
-        public DistributionMonitorWorker(DateTime minDate, int top, string connString, TimeSpan sleepPeriod,
-            Func<IWfeClient> clientFactory, ILogger logger)
+        public DateTime MinDateToMonitor { get; set; }
+        public int MaxResults { get; set; }
+        public string InitialDistrState { get; set; }
+        public string InitialDistrAction { get; set; }
+        public string LastDistrState { get; set; }
+        public string LastDistrAction { get; set; }
+
+        public DistributionMonitorWorker(string connString, Func<IWfeClient> clientFactory, ILogger logger)
             : base(logger)
         {
-            SleepPeriod = sleepPeriod;
-            _minDate = minDate;
-            _top = top;
             _connString = connString;
             _clientFactory = clientFactory;
         }
@@ -34,28 +35,30 @@ namespace Idb.Sec.Convergence.Daemon
             using (var connection = new SqlConnection(_connString))
             {
                 var p = new DynamicParameters();
-                p.Add("@MIN_DATE", _minDate, DbType.DateTime);
-                p.Add("@TOP", _top, DbType.Int32);
+                p.Add("@MIN_DATE", MinDateToMonitor, DbType.DateTime);
+                p.Add("@TOP", MaxResults, DbType.Int32);
 
                 var command = new CommandDefinition("[DocumentDistribution_Read]", p, null, null, CommandType.StoredProcedure);
                 var records = await connection.QueryAsync<DistributionRecord>(command);
                 var client = _clientFactory();
                 foreach (var x in records)
                 {
-                    const string action = "Submit for translation";
-                    const string state = "Created";
+                    string action = null;
+                    string currentState = null;
                     try
                     {
-                        await client.ExecuteActionAsync(x.WorkflowId, action, state);
+                        var instance = await client.GetWorkflowInstanceAsync(x.WorkflowId);
+                        currentState = instance.CurrentState;
+                        if (currentState != InitialDistrState && currentState != LastDistrState) continue;
                         var cd = await client.GetCustomDataAsync(x.WorkflowId);
-                        if (TryAddDistribution(x, cd))
-                        {
-                            await client.SetCustomDataAsync(x.WorkflowId, cd);
-                        }
+                        if (!TryAddDistribution(x, cd)) continue;
+                        await client.SetCustomDataAsync(x.WorkflowId, cd);
+                        action = instance.CurrentState == InitialDistrState ? InitialDistrAction : LastDistrAction;
+                        await client.ExecuteActionAsync(x.WorkflowId, action, instance.CurrentState);
                     }
                     catch (Exception exception)
                     {
-                        Logger.Error(string.Format("Error executing action '{0}/{1}' on instance '{2}'", state, action, x.InstanceId), exception);
+                        Logger.Error(string.Format("Error executing action '{0}/{1}' on instance '{2}'", currentState, action, x.InstanceId), exception);
                     }
                 }
             }
