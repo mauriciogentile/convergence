@@ -70,8 +70,7 @@ namespace Idb.Sec.Convergence.Daemon
             {
                 distributedOn = record.DistributedOn,
                 committeeId = record.CommitteeId,
-                pipeline = record.Pipeline,
-                version = record.Version + 1,
+                version = record.Version,
                 versionId = record.VersionId,
                 procedure = record.Procedure
             };
@@ -88,7 +87,13 @@ namespace Idb.Sec.Convergence.Daemon
                 list.ToList().ForEach(x =>
                 {
                     var dict = x as Dictionary<string, object>;
-                    if (dict != null && Equals(dict["version"], newEntry.version) && Equals(dict["versionId"], newEntry.versionId))
+                    var exists = dict != null &&
+                        Equals(dict["version"], newEntry.version) &&
+                        Equals(dict["versionId"], newEntry.versionId) &&
+                        Equals(dict["procedure"], newEntry.procedure) &&
+                        Equals(dict["committeeId"], newEntry.committeeId);
+
+                    if (exists)
                     {
                         discard = true;
                     }
