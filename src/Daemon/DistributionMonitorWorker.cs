@@ -71,48 +71,51 @@ namespace Idb.Sec.Convergence.Daemon
 
         static bool TryAddDistribution(DistributionRecord record, dynamic cd)
         {
-            var newEntry = new
+            var newEntry = new Dictionary<string, object>
             {
-                distributedOn = record.DistributedOn,
-                committeeId = record.CommitteeId,
-                version = record.Version,
-                versionId = record.VersionId,
-                procedure = record.Procedure
+                { "distributedOn", record.DistributedOn },
+                { "distributedOn", record.DistributedOn },
+                { "committeeId", record.CommitteeId },
+                { "version", record.Version },
+                { "versionId", record.VersionId },
+                { "procedure", record.Procedure }
             };
+
             if (!Helpers.DoesPropertyExist(cd, "distributions"))
             {
                 cd["distributions"] = new[] { newEntry };
                 return true;
             }
 
-            var list = cd["distributions"] as IList<object>;
-            if (list != null)
+            var distributions = cd["distributions"] as IList<Dictionary<string, object>>;
+            if (distributions == null)
             {
-                var discard = false;
-                list.ToList().ForEach(x =>
-                {
-                    var dict = x as Dictionary<string, object>;
-                    var exists = dict != null &&
-                        Equals(dict["version"], newEntry.version) &&
-                        Equals(dict["versionId"], newEntry.versionId) &&
-                        Equals(dict["procedure"], newEntry.procedure) &&
-                        Equals(dict["committeeId"], newEntry.committeeId);
+                cd["distributions"] = new List<Dictionary<string, object>> { newEntry };
+                return true;
+            }
 
-                    if (exists)
-                    {
-                        discard = true;
-                    }
-                });
-                if (discard)
-                {
-                    return false;
-                }
-                list.Add(newEntry);
-            }
-            else
+            var discard = false;
+            distributions.ToList().ForEach(dict =>
             {
-                cd["distributions"] = new[] { newEntry };
+                var exists = dict != null &&
+                    Equals(dict["version"], newEntry["version"]) &&
+                    Equals(dict["versionId"], newEntry["versionId"]) &&
+                    Equals(dict["procedure"], newEntry["procedure"]) &&
+                    Equals(dict["committeeId"], newEntry["committeeId"]);
+
+                if (exists)
+                {
+                    discard = true;
+                }
+            });
+
+            if (discard)
+            {
+                return false;
             }
+            
+            distributions.Add(newEntry);
+            
             return true;
         }
     }
