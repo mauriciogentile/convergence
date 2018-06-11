@@ -8,7 +8,6 @@ using Dapper;
 using Idb.CommonServices.Util.Diagnostic;
 using Idb.CommonServices.Util.Tasks;
 using Sec.Wfe.RestClient;
-using SimpleJson;
 
 namespace Idb.Sec.Convergence.Daemon
 {
@@ -94,8 +93,8 @@ namespace Idb.Sec.Convergence.Daemon
             {
                 var dict = x as Dictionary<string, object>;
                 if (dict == null) return;
-                var id1 = string.Format("{0}_{1}_{2}_{3}", dict["version"], dict["versionId"], dict["procedure"], dict["committeeId"]);
-                var id2 = string.Format("{0}_{1}_{2}_{3}", newEntry["version"], newEntry["versionId"], newEntry["procedure"], newEntry["committeeId"]);
+                var id1 = GetId(dict);
+                var id2 = GetId(newEntry);
                 if (id1 == id2)
                 {
                     discard = true;
@@ -110,6 +109,11 @@ namespace Idb.Sec.Convergence.Daemon
             distributions.Add(newEntry);
 
             return true;
+        }
+
+        static string GetId(IDictionary<string, object> dict)
+        {
+            return string.Format("{0}_{1}_{2}_{3}", dict["version"], dict["versionId"], dict["procedure"], dict["committeeId"]);
         }
     }
 }
