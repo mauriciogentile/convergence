@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 using Dapper;
 using Idb.CommonServices.Util.Diagnostic;
 using Idb.CommonServices.Util.Tasks;
-using Idb.Wfe.RestClient;
+using Sec.Wfe.RestClient;
+using SimpleJson;
 
 namespace Idb.Sec.Convergence.Daemon
 {
@@ -41,6 +42,7 @@ namespace Idb.Sec.Convergence.Daemon
                 var command = new CommandDefinition("[DocumentDistribution_Read]", p, null, null, CommandType.StoredProcedure);
                 var records = await connection.QueryAsync<DistributionRecord>(command);
                 var client = _clientFactory();
+
                 foreach (var x in records)
                 {
                     string action = null;
@@ -74,36 +76,27 @@ namespace Idb.Sec.Convergence.Daemon
             var newEntry = new Dictionary<string, object>
             {
                 { "distributedOn", record.DistributedOn },
-                { "distributedOn", record.DistributedOn },
                 { "committeeId", record.CommitteeId },
                 { "version", record.Version },
                 { "versionId", record.VersionId },
                 { "procedure", record.Procedure }
             };
 
-            if (!Helpers.DoesPropertyExist(cd, "distributions"))
+            var distributions = cd["distributions"] as IList<object>;
+            if (distributions == null || !Helpers.DoesPropertyExist(cd, "distributions"))
             {
-                cd["distributions"] = new[] { newEntry };
-                return true;
-            }
-
-            var distributions = cd["distributions"] as IList<Dictionary<string, object>>;
-            if (distributions == null)
-            {
-                cd["distributions"] = new List<Dictionary<string, object>> { newEntry };
+                cd["distributions"] = new List<object> { newEntry };
                 return true;
             }
 
             var discard = false;
-            distributions.ToList().ForEach(dict =>
+            distributions.ToList().ForEach(x =>
             {
-                var exists = dict != null &&
-                    Equals(dict["version"], newEntry["version"]) &&
-                    Equals(dict["versionId"], newEntry["versionId"]) &&
-                    Equals(dict["procedure"], newEntry["procedure"]) &&
-                    Equals(dict["committeeId"], newEntry["committeeId"]);
-
-                if (exists)
+                var dict = x as Dictionary<string, object>;
+                if (dict == null) return;
+                var id1 = string.Format("{0}_{1}_{2}_{3}", dict["version"], dict["versionId"], dict["procedure"], dict["committeeId"]);
+                var id2 = string.Format("{0}_{1}_{2}_{3}", newEntry["version"], newEntry["versionId"], newEntry["procedure"], newEntry["committeeId"]);
+                if (id1 == id2)
                 {
                     discard = true;
                 }
@@ -113,9 +106,9 @@ namespace Idb.Sec.Convergence.Daemon
             {
                 return false;
             }
-            
+
             distributions.Add(newEntry);
-            
+
             return true;
         }
     }

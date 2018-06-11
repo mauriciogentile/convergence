@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using Idb.CommonServices.Util.Diagnostic;
 using Idb.CommonServices.Util.Tasks;
-using Idb.Wfe.RestClient;
+using Sec.Wfe.RestClient;
 using Topshelf;
 
 namespace Idb.Sec.Convergence.Daemon
@@ -48,12 +48,7 @@ namespace Idb.Sec.Convergence.Daemon
             var username = ConfigurationManager.AppSettings["WFE.ApiUsername"];
             var password = ConfigurationManager.AppSettings["WFE.ApiPassword"];
 
-            var factory = new Func<IWfeClient>(() =>
-            {
-                var client = new Client(wfeApiUrl);
-                client.Login(clientId, clientSecret, username, password);
-                return client;
-            });
+            var factory = new Func<IWfeClient>(() => new Client(wfeApiUrl).Login(clientId, clientSecret, username, password));
 
             var monitorWorker = new DistributionMonitorWorker(connString, factory, logger)
             {
