@@ -87,7 +87,8 @@ namespace Idb.Sec.Convergence.Daemon
                     {"docId", doc.Id},
                     {"lang", doc.Language},
                     {"url", doc.Url},
-                    {"procedure", record.Procedure}
+                    {"procedure", record.Procedure},
+                    {"description", record.Description}
                 };
 
                 var discard = false;

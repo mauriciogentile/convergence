@@ -34,6 +34,7 @@ namespace Idb.Sec.Convergence.Daemon
 
         static IEnumerable<IWorker> GetWorkers(ILogger logger)
         {
+            var ezShareAccessCode = ConfigurationManager.AppSettings["EzShareAccessCode"];
             var lastDays = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_LAST_DAYS"]);
             var top = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_MAX_RESULTS"]);
             var ditributionSleep = int.Parse(ConfigurationManager.AppSettings["DISTRIBUTION_SLEEP_IN_MIN"]);
@@ -49,7 +50,7 @@ namespace Idb.Sec.Convergence.Daemon
             var password = ConfigurationManager.AppSettings["WFE.ApiPassword"];
 
             var factory = new Func<IWfeClient>(() => new Client(wfeApiUrl).Login(clientId, clientSecret, username, password));
-            var docStorage = new DocumentStorage("");
+            var docStorage = new DocumentStorage(ezShareAccessCode);
 
             var monitorWorker = new DistributionMonitorWorker(connString, docStorage, factory, logger)
             {

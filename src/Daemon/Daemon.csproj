@@ -60,6 +60,7 @@
     <Compile Include="DistributionMonitorWorker.cs" />
     <Compile Include="DistributionRecord.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="DocumentStorage.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="IDocumentStorage.cs" />
     <Compile Include="Program.cs" />
