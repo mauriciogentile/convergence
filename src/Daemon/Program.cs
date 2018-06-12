@@ -49,8 +49,9 @@ namespace Idb.Sec.Convergence.Daemon
             var password = ConfigurationManager.AppSettings["WFE.ApiPassword"];
 
             var factory = new Func<IWfeClient>(() => new Client(wfeApiUrl).Login(clientId, clientSecret, username, password));
+            var docStorage = new DocumentStorage("");
 
-            var monitorWorker = new DistributionMonitorWorker(connString, factory, logger)
+            var monitorWorker = new DistributionMonitorWorker(connString, docStorage, factory, logger)
             {
                 LastDays = lastDays,
                 SleepPeriod = TimeSpan.FromMinutes(ditributionSleep),

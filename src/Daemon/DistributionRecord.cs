@@ -5,7 +5,7 @@ namespace Idb.Sec.Convergence.Daemon
     public class DistributionRecord
     {
         public string Version { get; set; }
-        public string VersionId { get; set; }
+        public string DocId { get; set; }
         public string Pipeline { get; set; }
         public string Committee { get; set; }
         public int CommitteeId { get; set; }

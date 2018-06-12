@@ -1,0 +1,3873 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx" xmlns:s1="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/AbstractTypes" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx">
+      <s:element name="AddEntryToLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="docNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="activityDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="refDocument" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="refLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddEntryToLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="AddEntryToLogResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Search">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnProperties" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchCriteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Libraries" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Search_ReturnString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReturnProperties" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SearchCriteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Libraries" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Search_ReturnStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Search_ReturnStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sUserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLoginID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="WebLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="WebLoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDefaultLibrary">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDefaultLibraryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDefaultLibraryResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSQLPassThrough">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="SQLSentence" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ResultTableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSQLPassThroughResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExecuteSQLPassThroughResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableLookUp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ValueField" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DescriptionField" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TableLookUpResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TableLookUpResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptString">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sClearText" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptStringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptStringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllProfileFields">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="docNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FormName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllProfileFieldsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllProfileFieldsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserPermissions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="AccessRightNeeded" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserPermissionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="UserPermissionsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserPermissionsList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UserPermissionsListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserPermissionsListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTrustees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TrusteeList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTrusteesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetTrusteesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveTrustees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TrusteeList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveTrusteesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveTrusteesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersions">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentVersionsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentVersionsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetriveDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VersionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RetriveDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RetriveDocumentResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="VersionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBinaryDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBinaryDocumentResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocumentFromStream">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fileStream" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="trusteeList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocumentFromStreamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDocumentFromStreamResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocumentFromFile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilenameUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="trusteeList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocumentFromFileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDocumentFromFileResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocumentVersion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="docNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="authorId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TYPIST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Comments" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateDocumentVersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateDocumentVersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaperProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Criteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="trusteeList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreatePaperProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreatePaperProfileResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProfile">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NewCriteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FullDocURL" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateProfileResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateProfileResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentCheckOut">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentCheckOutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentCheckOutResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentCheckIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Library" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FilenameUrl" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TYPIST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="comments" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="CheckInMode" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentCheckInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentCheckInResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="docNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="versionId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DeleteDocumentResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Version">
+        <s:complexType />
+      </s:element>
+      <s:element name="VersionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="VersionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLibrariesAvailable">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetLibrariesAvailableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLibrariesAvailableResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderCreate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sCriteria" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sTrusteeList" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderCreateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FolderCreateResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderDelete">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFolderDocNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderDeleteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FolderDeleteResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderAddDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFolderDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentDocNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderAddDocumentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FolderRemoveDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFolderDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocumentDocNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderRemoveDocumentResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="FolderGetContents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFolderDocNum" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bRecursive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderGetContentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FolderGetContentsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderSetTrustees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sFolderDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sTrusteeList" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="bRecusive" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FolderSetTrusteesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FolderSetTrusteesResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentStream">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sVersionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentStreamResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentStreamResult" type="tns:IDBDocsStream" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDocumentStream">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sVersionId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="strm" type="tns:IDBDocsStream" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateDocumentStreamResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="QueryDB">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sUserID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sUserPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sSQL" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="collDBParams" type="tns:ArrayOfDMDBSqlParamsSerializableField" />
+            <s:element minOccurs="0" maxOccurs="1" name="sResultTableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDMDBSqlParamsSerializableField">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DMDBSqlParamsSerializableField" nillable="true" type="tns:DMDBSqlParamsSerializableField" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DMDBSqlParamsSerializableField">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="FieldValue" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" abstract="true" />
+      <s:element name="QueryDBResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="QueryDBResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LastContentUpdateTime">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sVersionSpec" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LastContentUpdateTimeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LastContentUpdateTimeResult" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreventCCUpdatesOnDoc">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="boolPreventUpdates" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PreventCCUpdatesOnDocResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="AuthorizeInternet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sResponsibleUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sResponsiblePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthorizeInternetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UnauthorizeInternet">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sResponsibleUID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sResponsiblePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnauthorizeInternetResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInternetPublicationInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sLibrary" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInternetPublicationInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInternetPublicationInfoResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakeRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MakeRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="UnmakeRecord">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sDST" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sDocNum" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UnmakeRecordResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="TermStoreCache">
+        <s:complexType />
+      </s:element>
+      <s:element name="TermStoreCacheResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TermStoreCacheResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="boolean" type="s:boolean" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="DataSet" nillable="true">
+        <s:complexType>
+          <s:sequence>
+            <s:element ref="s:schema" />
+            <s:any />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
+      <s:element name="IDBDocsStream" nillable="true" type="tns:IDBDocsStream" />
+      <s:element name="dateTime" type="s:dateTime" />
+      <s:complexType name="IDBDocsStream">
+        <s:sequence>
+          <s:element name="fileName" type="s:string" />
+          <s:element name="size" type="s:int" />
+          <s:element name="file">
+            <s:complexType>
+              <s:sequence>
+                <s:element maxOccurs="unbounded" name="chunk" type="s:base64Binary" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema targetNamespace="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/AbstractTypes">
+      <s:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <s:complexType name="StringArray">
+        <s:complexContent mixed="false">
+          <s:restriction base="soapenc:Array">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="unbounded" name="String" type="s:string" />
+            </s:sequence>
+          </s:restriction>
+        </s:complexContent>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddEntryToLogSoapIn">
+    <wsdl:part name="parameters" element="tns:AddEntryToLog" />
+  </wsdl:message>
+  <wsdl:message name="AddEntryToLogSoapOut">
+    <wsdl:part name="parameters" element="tns:AddEntryToLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="Search_ReturnStringSoapIn">
+    <wsdl:part name="parameters" element="tns:Search_ReturnString" />
+  </wsdl:message>
+  <wsdl:message name="Search_ReturnStringSoapOut">
+    <wsdl:part name="parameters" element="tns:Search_ReturnStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="WebLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:WebLogin" />
+  </wsdl:message>
+  <wsdl:message name="WebLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:WebLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultLibrarySoapIn">
+    <wsdl:part name="parameters" element="tns:GetDefaultLibrary" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultLibrarySoapOut">
+    <wsdl:part name="parameters" element="tns:GetDefaultLibraryResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLPassThroughSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteSQLPassThrough" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLPassThroughSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteSQLPassThroughResponse" />
+  </wsdl:message>
+  <wsdl:message name="TableLookUpSoapIn">
+    <wsdl:part name="parameters" element="tns:TableLookUp" />
+  </wsdl:message>
+  <wsdl:message name="TableLookUpSoapOut">
+    <wsdl:part name="parameters" element="tns:TableLookUpResponse" />
+  </wsdl:message>
+  <wsdl:message name="EncryptStringSoapIn">
+    <wsdl:part name="parameters" element="tns:EncryptString" />
+  </wsdl:message>
+  <wsdl:message name="EncryptStringSoapOut">
+    <wsdl:part name="parameters" element="tns:EncryptStringResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProfileFieldsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllProfileFields" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProfileFieldsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllProfileFieldsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsSoapIn">
+    <wsdl:part name="parameters" element="tns:UserPermissions" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsSoapOut">
+    <wsdl:part name="parameters" element="tns:UserPermissionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsListSoapIn">
+    <wsdl:part name="parameters" element="tns:UserPermissionsList" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsListSoapOut">
+    <wsdl:part name="parameters" element="tns:UserPermissionsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetTrusteesSoapIn">
+    <wsdl:part name="parameters" element="tns:SetTrustees" />
+  </wsdl:message>
+  <wsdl:message name="SetTrusteesSoapOut">
+    <wsdl:part name="parameters" element="tns:SetTrusteesResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTrusteesSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveTrustees" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTrusteesSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveTrusteesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersions" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentVersionsResponse" />
+  </wsdl:message>
+  <wsdl:message name="RetriveDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:RetriveDocument" />
+  </wsdl:message>
+  <wsdl:message name="RetriveDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:RetriveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBinaryDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBinaryDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromStreamSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDocumentFromStream" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromStreamSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDocumentFromStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromFileSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDocumentFromFile" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromFileSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDocumentFromFileResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentVersionSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateDocumentVersion" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentVersionSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateDocumentVersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaperProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:CreatePaperProfile" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaperProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:CreatePaperProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProfileSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateProfile" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProfileSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateProfileResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckOutSoapIn">
+    <wsdl:part name="parameters" element="tns:DocumentCheckOut" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckOutSoapOut">
+    <wsdl:part name="parameters" element="tns:DocumentCheckOutResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckInSoapIn">
+    <wsdl:part name="parameters" element="tns:DocumentCheckIn" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckInSoapOut">
+    <wsdl:part name="parameters" element="tns:DocumentCheckInResponse" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteDocument" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="VersionSoapIn">
+    <wsdl:part name="parameters" element="tns:Version" />
+  </wsdl:message>
+  <wsdl:message name="VersionSoapOut">
+    <wsdl:part name="parameters" element="tns:VersionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLibrariesAvailableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetLibrariesAvailable" />
+  </wsdl:message>
+  <wsdl:message name="GetLibrariesAvailableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetLibrariesAvailableResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderCreateSoapIn">
+    <wsdl:part name="parameters" element="tns:FolderCreate" />
+  </wsdl:message>
+  <wsdl:message name="FolderCreateSoapOut">
+    <wsdl:part name="parameters" element="tns:FolderCreateResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderDeleteSoapIn">
+    <wsdl:part name="parameters" element="tns:FolderDelete" />
+  </wsdl:message>
+  <wsdl:message name="FolderDeleteSoapOut">
+    <wsdl:part name="parameters" element="tns:FolderDeleteResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderAddDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:FolderAddDocument" />
+  </wsdl:message>
+  <wsdl:message name="FolderAddDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:FolderAddDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderRemoveDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:FolderRemoveDocument" />
+  </wsdl:message>
+  <wsdl:message name="FolderRemoveDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:FolderRemoveDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderGetContentsSoapIn">
+    <wsdl:part name="parameters" element="tns:FolderGetContents" />
+  </wsdl:message>
+  <wsdl:message name="FolderGetContentsSoapOut">
+    <wsdl:part name="parameters" element="tns:FolderGetContentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="FolderSetTrusteesSoapIn">
+    <wsdl:part name="parameters" element="tns:FolderSetTrustees" />
+  </wsdl:message>
+  <wsdl:message name="FolderSetTrusteesSoapOut">
+    <wsdl:part name="parameters" element="tns:FolderSetTrusteesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStreamSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentStream" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStreamSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDocumentStreamSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateDocumentStream" />
+  </wsdl:message>
+  <wsdl:message name="UpdateDocumentStreamSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateDocumentStreamResponse" />
+  </wsdl:message>
+  <wsdl:message name="QueryDBSoapIn">
+    <wsdl:part name="parameters" element="tns:QueryDB" />
+  </wsdl:message>
+  <wsdl:message name="QueryDBSoapOut">
+    <wsdl:part name="parameters" element="tns:QueryDBResponse" />
+  </wsdl:message>
+  <wsdl:message name="LastContentUpdateTimeSoapIn">
+    <wsdl:part name="parameters" element="tns:LastContentUpdateTime" />
+  </wsdl:message>
+  <wsdl:message name="LastContentUpdateTimeSoapOut">
+    <wsdl:part name="parameters" element="tns:LastContentUpdateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="PreventCCUpdatesOnDocSoapIn">
+    <wsdl:part name="parameters" element="tns:PreventCCUpdatesOnDoc" />
+  </wsdl:message>
+  <wsdl:message name="PreventCCUpdatesOnDocSoapOut">
+    <wsdl:part name="parameters" element="tns:PreventCCUpdatesOnDocResponse" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeInternetSoapIn">
+    <wsdl:part name="parameters" element="tns:AuthorizeInternet" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeInternetSoapOut">
+    <wsdl:part name="parameters" element="tns:AuthorizeInternetResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnauthorizeInternetSoapIn">
+    <wsdl:part name="parameters" element="tns:UnauthorizeInternet" />
+  </wsdl:message>
+  <wsdl:message name="UnauthorizeInternetSoapOut">
+    <wsdl:part name="parameters" element="tns:UnauthorizeInternetResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInternetPublicationInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInternetPublicationInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetInternetPublicationInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInternetPublicationInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="MakeRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:MakeRecord" />
+  </wsdl:message>
+  <wsdl:message name="MakeRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:MakeRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="UnmakeRecordSoapIn">
+    <wsdl:part name="parameters" element="tns:UnmakeRecord" />
+  </wsdl:message>
+  <wsdl:message name="UnmakeRecordSoapOut">
+    <wsdl:part name="parameters" element="tns:UnmakeRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="TermStoreCacheSoapIn">
+    <wsdl:part name="parameters" element="tns:TermStoreCache" />
+  </wsdl:message>
+  <wsdl:message name="TermStoreCacheSoapOut">
+    <wsdl:part name="parameters" element="tns:TermStoreCacheResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddEntryToLogHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="userID" type="s:string" />
+    <wsdl:part name="activityDesc" type="s:string" />
+    <wsdl:part name="refDocument" type="s:string" />
+    <wsdl:part name="refLibrary" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddEntryToLogHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="SearchHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="ReturnProperties" type="s:string" />
+    <wsdl:part name="SearchCriteria" type="s:string" />
+    <wsdl:part name="Libraries" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="Search_ReturnStringHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="ReturnProperties" type="s:string" />
+    <wsdl:part name="SearchCriteria" type="s:string" />
+    <wsdl:part name="Libraries" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Search_ReturnStringHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpGetIn">
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="WebLoginHttpGetIn">
+    <wsdl:part name="sUserId" type="s:string" />
+    <wsdl:part name="sPassword" type="s:string" />
+    <wsdl:part name="sLoginID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WebLoginHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultLibraryHttpGetIn" />
+  <wsdl:message name="GetDefaultLibraryHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLPassThroughHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="SQLSentence" type="s:string" />
+    <wsdl:part name="ResultTableName" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLPassThroughHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="TableLookUpHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="TableName" type="s:string" />
+    <wsdl:part name="ValueField" type="s:string" />
+    <wsdl:part name="DescriptionField" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TableLookUpHttpGetOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="EncryptStringHttpGetIn">
+    <wsdl:part name="sClearText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EncryptStringHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProfileFieldsHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="FormName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProfileFieldsHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsHttpGetIn">
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="AccessRightNeeded" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsListHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsListHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="SetTrusteesHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="TrusteeList" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetTrusteesHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTrusteesHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="TrusteeList" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTrusteesHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="RetriveDocumentHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="VersionId" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RetriveDocumentHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryDocumentHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="VersionId" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryDocumentHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromStreamHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="fileStream" type="s1:StringArray" />
+    <wsdl:part name="Criteria" type="s:string" />
+    <wsdl:part name="trusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromStreamHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromFileHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="FilenameUrl" type="s:string" />
+    <wsdl:part name="Criteria" type="s:string" />
+    <wsdl:part name="trusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromFileHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentVersionHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="authorId" type="s:string" />
+    <wsdl:part name="TYPIST" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentVersionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaperProfileHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="Criteria" type="s:string" />
+    <wsdl:part name="trusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaperProfileHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProfileHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="NewCriteria" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="FullDocURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProfileHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckOutHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckOutHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckInHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="FilenameUrl" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="TYPIST" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="CheckInMode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckInHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentHttpGetIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="versionId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="VersionHttpGetIn" />
+  <wsdl:message name="VersionHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLibrariesAvailableHttpGetIn" />
+  <wsdl:message name="GetLibrariesAvailableHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderCreateHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sCriteria" type="s:string" />
+    <wsdl:part name="sTrusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderCreateHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderDeleteHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderDeleteHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderAddDocumentHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="sDocumentDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderAddDocumentHttpGetOut" />
+  <wsdl:message name="FolderRemoveDocumentHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="sDocumentDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderRemoveDocumentHttpGetOut" />
+  <wsdl:message name="FolderGetContentsHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="bRecursive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderGetContentsHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderSetTrusteesHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="sTrusteeList" type="s:string" />
+    <wsdl:part name="bRecusive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderSetTrusteesHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStreamHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sVersionId" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStreamHttpGetOut">
+    <wsdl:part name="Body" element="tns:IDBDocsStream" />
+  </wsdl:message>
+  <wsdl:message name="LastContentUpdateTimeHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sVersionSpec" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LastContentUpdateTimeHttpGetOut">
+    <wsdl:part name="Body" element="tns:dateTime" />
+  </wsdl:message>
+  <wsdl:message name="PreventCCUpdatesOnDocHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="boolPreventUpdates" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PreventCCUpdatesOnDocHttpGetOut" />
+  <wsdl:message name="AuthorizeInternetHttpGetIn">
+    <wsdl:part name="sResponsibleUID" type="s:string" />
+    <wsdl:part name="sResponsiblePassword" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeInternetHttpGetOut" />
+  <wsdl:message name="UnauthorizeInternetHttpGetIn">
+    <wsdl:part name="sResponsibleUID" type="s:string" />
+    <wsdl:part name="sResponsiblePassword" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UnauthorizeInternetHttpGetOut" />
+  <wsdl:message name="GetInternetPublicationInfoHttpGetIn">
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInternetPublicationInfoHttpGetOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="MakeRecordHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MakeRecordHttpGetOut" />
+  <wsdl:message name="UnmakeRecordHttpGetIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UnmakeRecordHttpGetOut" />
+  <wsdl:message name="TermStoreCacheHttpGetIn" />
+  <wsdl:message name="TermStoreCacheHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="AddEntryToLogHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="userID" type="s:string" />
+    <wsdl:part name="activityDesc" type="s:string" />
+    <wsdl:part name="refDocument" type="s:string" />
+    <wsdl:part name="refLibrary" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddEntryToLogHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="SearchHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="ReturnProperties" type="s:string" />
+    <wsdl:part name="SearchCriteria" type="s:string" />
+    <wsdl:part name="Libraries" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SearchHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="Search_ReturnStringHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="ReturnProperties" type="s:string" />
+    <wsdl:part name="SearchCriteria" type="s:string" />
+    <wsdl:part name="Libraries" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="Search_ReturnStringHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpPostIn">
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="Password" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="WebLoginHttpPostIn">
+    <wsdl:part name="sUserId" type="s:string" />
+    <wsdl:part name="sPassword" type="s:string" />
+    <wsdl:part name="sLoginID" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="WebLoginHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDefaultLibraryHttpPostIn" />
+  <wsdl:message name="GetDefaultLibraryHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLPassThroughHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="SQLSentence" type="s:string" />
+    <wsdl:part name="ResultTableName" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLPassThroughHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="TableLookUpHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="TableName" type="s:string" />
+    <wsdl:part name="ValueField" type="s:string" />
+    <wsdl:part name="DescriptionField" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="TableLookUpHttpPostOut">
+    <wsdl:part name="Body" element="tns:DataSet" />
+  </wsdl:message>
+  <wsdl:message name="EncryptStringHttpPostIn">
+    <wsdl:part name="sClearText" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="EncryptStringHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProfileFieldsHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="FormName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAllProfileFieldsHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsHttpPostIn">
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="AccessRightNeeded" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsListHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="UserId" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UserPermissionsListHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="SetTrusteesHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="TrusteeList" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SetTrusteesHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTrusteesHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="TrusteeList" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RemoveTrusteesHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentVersionsHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="RetriveDocumentHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="VersionId" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="RetriveDocumentHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryDocumentHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="VersionId" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetBinaryDocumentHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromStreamHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="fileStream" type="s1:StringArray" />
+    <wsdl:part name="Criteria" type="s:string" />
+    <wsdl:part name="trusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromStreamHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromFileHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="FilenameUrl" type="s:string" />
+    <wsdl:part name="Criteria" type="s:string" />
+    <wsdl:part name="trusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentFromFileHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentVersionHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="authorId" type="s:string" />
+    <wsdl:part name="TYPIST" type="s:string" />
+    <wsdl:part name="Comments" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateDocumentVersionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaperProfileHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="Criteria" type="s:string" />
+    <wsdl:part name="trusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreatePaperProfileHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProfileHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="NewCriteria" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="FullDocURL" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UpdateProfileHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckOutHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckOutHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckInHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="Library" type="s:string" />
+    <wsdl:part name="FilenameUrl" type="s:string" />
+    <wsdl:part name="DocNum" type="s:string" />
+    <wsdl:part name="TYPIST" type="s:string" />
+    <wsdl:part name="comments" type="s:string" />
+    <wsdl:part name="CheckInMode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DocumentCheckInHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentHttpPostIn">
+    <wsdl:part name="DST" type="s:string" />
+    <wsdl:part name="docNum" type="s:string" />
+    <wsdl:part name="versionId" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DeleteDocumentHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="VersionHttpPostIn" />
+  <wsdl:message name="VersionHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetLibrariesAvailableHttpPostIn" />
+  <wsdl:message name="GetLibrariesAvailableHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderCreateHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sCriteria" type="s:string" />
+    <wsdl:part name="sTrusteeList" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderCreateHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderDeleteHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderDeleteHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderAddDocumentHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="sDocumentDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderAddDocumentHttpPostOut" />
+  <wsdl:message name="FolderRemoveDocumentHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="sDocumentDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderRemoveDocumentHttpPostOut" />
+  <wsdl:message name="FolderGetContentsHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="bRecursive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderGetContentsHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="FolderSetTrusteesHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+    <wsdl:part name="sFolderDocNum" type="s:string" />
+    <wsdl:part name="sTrusteeList" type="s:string" />
+    <wsdl:part name="bRecusive" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="FolderSetTrusteesHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStreamHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sVersionId" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentStreamHttpPostOut">
+    <wsdl:part name="Body" element="tns:IDBDocsStream" />
+  </wsdl:message>
+  <wsdl:message name="LastContentUpdateTimeHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sVersionSpec" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LastContentUpdateTimeHttpPostOut">
+    <wsdl:part name="Body" element="tns:dateTime" />
+  </wsdl:message>
+  <wsdl:message name="PreventCCUpdatesOnDocHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="boolPreventUpdates" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PreventCCUpdatesOnDocHttpPostOut" />
+  <wsdl:message name="AuthorizeInternetHttpPostIn">
+    <wsdl:part name="sResponsibleUID" type="s:string" />
+    <wsdl:part name="sResponsiblePassword" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AuthorizeInternetHttpPostOut" />
+  <wsdl:message name="UnauthorizeInternetHttpPostIn">
+    <wsdl:part name="sResponsibleUID" type="s:string" />
+    <wsdl:part name="sResponsiblePassword" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UnauthorizeInternetHttpPostOut" />
+  <wsdl:message name="GetInternetPublicationInfoHttpPostIn">
+    <wsdl:part name="sDocNum" type="s:string" />
+    <wsdl:part name="sLibrary" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetInternetPublicationInfoHttpPostOut">
+    <wsdl:part name="Body" />
+  </wsdl:message>
+  <wsdl:message name="MakeRecordHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MakeRecordHttpPostOut" />
+  <wsdl:message name="UnmakeRecordHttpPostIn">
+    <wsdl:part name="sDST" type="s:string" />
+    <wsdl:part name="sDocNum" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="UnmakeRecordHttpPostOut" />
+  <wsdl:message name="TermStoreCacheHttpPostIn" />
+  <wsdl:message name="TermStoreCacheHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:portType name="WSIDBDocsSoap">
+    <wsdl:operation name="AddEntryToLog">
+      <wsdl:input message="tns:AddEntryToLogSoapIn" />
+      <wsdl:output message="tns:AddEntryToLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchSoapIn" />
+      <wsdl:output message="tns:SearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <wsdl:input message="tns:Search_ReturnStringSoapIn" />
+      <wsdl:output message="tns:Search_ReturnStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <wsdl:input message="tns:WebLoginSoapIn" />
+      <wsdl:output message="tns:WebLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <wsdl:input message="tns:GetDefaultLibrarySoapIn" />
+      <wsdl:output message="tns:GetDefaultLibrarySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <wsdl:input message="tns:ExecuteSQLPassThroughSoapIn" />
+      <wsdl:output message="tns:ExecuteSQLPassThroughSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <wsdl:input message="tns:TableLookUpSoapIn" />
+      <wsdl:output message="tns:TableLookUpSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <wsdl:input message="tns:EncryptStringSoapIn" />
+      <wsdl:output message="tns:EncryptStringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <wsdl:input message="tns:GetAllProfileFieldsSoapIn" />
+      <wsdl:output message="tns:GetAllProfileFieldsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <wsdl:input message="tns:UserPermissionsSoapIn" />
+      <wsdl:output message="tns:UserPermissionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <wsdl:input message="tns:UserPermissionsListSoapIn" />
+      <wsdl:output message="tns:UserPermissionsListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <wsdl:input message="tns:SetTrusteesSoapIn" />
+      <wsdl:output message="tns:SetTrusteesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <wsdl:input message="tns:RemoveTrusteesSoapIn" />
+      <wsdl:output message="tns:RemoveTrusteesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <wsdl:input message="tns:GetDocumentVersionsSoapIn" />
+      <wsdl:output message="tns:GetDocumentVersionsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <wsdl:input message="tns:RetriveDocumentSoapIn" />
+      <wsdl:output message="tns:RetriveDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <wsdl:input message="tns:GetBinaryDocumentSoapIn" />
+      <wsdl:output message="tns:GetBinaryDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <wsdl:input message="tns:CreateDocumentFromStreamSoapIn" />
+      <wsdl:output message="tns:CreateDocumentFromStreamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <wsdl:input message="tns:CreateDocumentFromFileSoapIn" />
+      <wsdl:output message="tns:CreateDocumentFromFileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <wsdl:input message="tns:CreateDocumentVersionSoapIn" />
+      <wsdl:output message="tns:CreateDocumentVersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <wsdl:input message="tns:CreatePaperProfileSoapIn" />
+      <wsdl:output message="tns:CreatePaperProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <wsdl:input message="tns:UpdateProfileSoapIn" />
+      <wsdl:output message="tns:UpdateProfileSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <wsdl:input message="tns:DocumentCheckOutSoapIn" />
+      <wsdl:output message="tns:DocumentCheckOutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <wsdl:input message="tns:DocumentCheckInSoapIn" />
+      <wsdl:output message="tns:DocumentCheckInSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <wsdl:input message="tns:DeleteDocumentSoapIn" />
+      <wsdl:output message="tns:DeleteDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <wsdl:input message="tns:VersionSoapIn" />
+      <wsdl:output message="tns:VersionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <wsdl:input message="tns:GetLibrariesAvailableSoapIn" />
+      <wsdl:output message="tns:GetLibrariesAvailableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <wsdl:input message="tns:FolderCreateSoapIn" />
+      <wsdl:output message="tns:FolderCreateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <wsdl:input message="tns:FolderDeleteSoapIn" />
+      <wsdl:output message="tns:FolderDeleteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <wsdl:input message="tns:FolderAddDocumentSoapIn" />
+      <wsdl:output message="tns:FolderAddDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <wsdl:input message="tns:FolderRemoveDocumentSoapIn" />
+      <wsdl:output message="tns:FolderRemoveDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <wsdl:input message="tns:FolderGetContentsSoapIn" />
+      <wsdl:output message="tns:FolderGetContentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <wsdl:input message="tns:FolderSetTrusteesSoapIn" />
+      <wsdl:output message="tns:FolderSetTrusteesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <wsdl:input message="tns:GetDocumentStreamSoapIn" />
+      <wsdl:output message="tns:GetDocumentStreamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDocumentStream">
+      <wsdl:input message="tns:UpdateDocumentStreamSoapIn" />
+      <wsdl:output message="tns:UpdateDocumentStreamSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryDB">
+      <wsdl:input message="tns:QueryDBSoapIn" />
+      <wsdl:output message="tns:QueryDBSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <wsdl:input message="tns:LastContentUpdateTimeSoapIn" />
+      <wsdl:output message="tns:LastContentUpdateTimeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <wsdl:input message="tns:PreventCCUpdatesOnDocSoapIn" />
+      <wsdl:output message="tns:PreventCCUpdatesOnDocSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <wsdl:input message="tns:AuthorizeInternetSoapIn" />
+      <wsdl:output message="tns:AuthorizeInternetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <wsdl:input message="tns:UnauthorizeInternetSoapIn" />
+      <wsdl:output message="tns:UnauthorizeInternetSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <wsdl:input message="tns:GetInternetPublicationInfoSoapIn" />
+      <wsdl:output message="tns:GetInternetPublicationInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <wsdl:input message="tns:MakeRecordSoapIn" />
+      <wsdl:output message="tns:MakeRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <wsdl:input message="tns:UnmakeRecordSoapIn" />
+      <wsdl:output message="tns:UnmakeRecordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <wsdl:input message="tns:TermStoreCacheSoapIn" />
+      <wsdl:output message="tns:TermStoreCacheSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSIDBDocsHttpGet">
+    <wsdl:operation name="AddEntryToLog">
+      <wsdl:input message="tns:AddEntryToLogHttpGetIn" />
+      <wsdl:output message="tns:AddEntryToLogHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchHttpGetIn" />
+      <wsdl:output message="tns:SearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <wsdl:input message="tns:Search_ReturnStringHttpGetIn" />
+      <wsdl:output message="tns:Search_ReturnStringHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginHttpGetIn" />
+      <wsdl:output message="tns:LoginHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <wsdl:input message="tns:WebLoginHttpGetIn" />
+      <wsdl:output message="tns:WebLoginHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <wsdl:input message="tns:GetDefaultLibraryHttpGetIn" />
+      <wsdl:output message="tns:GetDefaultLibraryHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <wsdl:input message="tns:ExecuteSQLPassThroughHttpGetIn" />
+      <wsdl:output message="tns:ExecuteSQLPassThroughHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <wsdl:input message="tns:TableLookUpHttpGetIn" />
+      <wsdl:output message="tns:TableLookUpHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <wsdl:input message="tns:EncryptStringHttpGetIn" />
+      <wsdl:output message="tns:EncryptStringHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <wsdl:input message="tns:GetAllProfileFieldsHttpGetIn" />
+      <wsdl:output message="tns:GetAllProfileFieldsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <wsdl:input message="tns:UserPermissionsHttpGetIn" />
+      <wsdl:output message="tns:UserPermissionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <wsdl:input message="tns:UserPermissionsListHttpGetIn" />
+      <wsdl:output message="tns:UserPermissionsListHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <wsdl:input message="tns:SetTrusteesHttpGetIn" />
+      <wsdl:output message="tns:SetTrusteesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <wsdl:input message="tns:RemoveTrusteesHttpGetIn" />
+      <wsdl:output message="tns:RemoveTrusteesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <wsdl:input message="tns:GetDocumentVersionsHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentVersionsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <wsdl:input message="tns:RetriveDocumentHttpGetIn" />
+      <wsdl:output message="tns:RetriveDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <wsdl:input message="tns:GetBinaryDocumentHttpGetIn" />
+      <wsdl:output message="tns:GetBinaryDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <wsdl:input message="tns:CreateDocumentFromStreamHttpGetIn" />
+      <wsdl:output message="tns:CreateDocumentFromStreamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <wsdl:input message="tns:CreateDocumentFromFileHttpGetIn" />
+      <wsdl:output message="tns:CreateDocumentFromFileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <wsdl:input message="tns:CreateDocumentVersionHttpGetIn" />
+      <wsdl:output message="tns:CreateDocumentVersionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <wsdl:input message="tns:CreatePaperProfileHttpGetIn" />
+      <wsdl:output message="tns:CreatePaperProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <wsdl:input message="tns:UpdateProfileHttpGetIn" />
+      <wsdl:output message="tns:UpdateProfileHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <wsdl:input message="tns:DocumentCheckOutHttpGetIn" />
+      <wsdl:output message="tns:DocumentCheckOutHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <wsdl:input message="tns:DocumentCheckInHttpGetIn" />
+      <wsdl:output message="tns:DocumentCheckInHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <wsdl:input message="tns:DeleteDocumentHttpGetIn" />
+      <wsdl:output message="tns:DeleteDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <wsdl:input message="tns:VersionHttpGetIn" />
+      <wsdl:output message="tns:VersionHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <wsdl:input message="tns:GetLibrariesAvailableHttpGetIn" />
+      <wsdl:output message="tns:GetLibrariesAvailableHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <wsdl:input message="tns:FolderCreateHttpGetIn" />
+      <wsdl:output message="tns:FolderCreateHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <wsdl:input message="tns:FolderDeleteHttpGetIn" />
+      <wsdl:output message="tns:FolderDeleteHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <wsdl:input message="tns:FolderAddDocumentHttpGetIn" />
+      <wsdl:output message="tns:FolderAddDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <wsdl:input message="tns:FolderRemoveDocumentHttpGetIn" />
+      <wsdl:output message="tns:FolderRemoveDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <wsdl:input message="tns:FolderGetContentsHttpGetIn" />
+      <wsdl:output message="tns:FolderGetContentsHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <wsdl:input message="tns:FolderSetTrusteesHttpGetIn" />
+      <wsdl:output message="tns:FolderSetTrusteesHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <wsdl:input message="tns:GetDocumentStreamHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentStreamHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <wsdl:input message="tns:LastContentUpdateTimeHttpGetIn" />
+      <wsdl:output message="tns:LastContentUpdateTimeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <wsdl:input message="tns:PreventCCUpdatesOnDocHttpGetIn" />
+      <wsdl:output message="tns:PreventCCUpdatesOnDocHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <wsdl:input message="tns:AuthorizeInternetHttpGetIn" />
+      <wsdl:output message="tns:AuthorizeInternetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <wsdl:input message="tns:UnauthorizeInternetHttpGetIn" />
+      <wsdl:output message="tns:UnauthorizeInternetHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <wsdl:input message="tns:GetInternetPublicationInfoHttpGetIn" />
+      <wsdl:output message="tns:GetInternetPublicationInfoHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <wsdl:input message="tns:MakeRecordHttpGetIn" />
+      <wsdl:output message="tns:MakeRecordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <wsdl:input message="tns:UnmakeRecordHttpGetIn" />
+      <wsdl:output message="tns:UnmakeRecordHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <wsdl:input message="tns:TermStoreCacheHttpGetIn" />
+      <wsdl:output message="tns:TermStoreCacheHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="WSIDBDocsHttpPost">
+    <wsdl:operation name="AddEntryToLog">
+      <wsdl:input message="tns:AddEntryToLogHttpPostIn" />
+      <wsdl:output message="tns:AddEntryToLogHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:input message="tns:SearchHttpPostIn" />
+      <wsdl:output message="tns:SearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <wsdl:input message="tns:Search_ReturnStringHttpPostIn" />
+      <wsdl:output message="tns:Search_ReturnStringHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <wsdl:input message="tns:LoginHttpPostIn" />
+      <wsdl:output message="tns:LoginHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <wsdl:input message="tns:WebLoginHttpPostIn" />
+      <wsdl:output message="tns:WebLoginHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <wsdl:input message="tns:GetDefaultLibraryHttpPostIn" />
+      <wsdl:output message="tns:GetDefaultLibraryHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <wsdl:input message="tns:ExecuteSQLPassThroughHttpPostIn" />
+      <wsdl:output message="tns:ExecuteSQLPassThroughHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <wsdl:input message="tns:TableLookUpHttpPostIn" />
+      <wsdl:output message="tns:TableLookUpHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <wsdl:input message="tns:EncryptStringHttpPostIn" />
+      <wsdl:output message="tns:EncryptStringHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <wsdl:input message="tns:GetAllProfileFieldsHttpPostIn" />
+      <wsdl:output message="tns:GetAllProfileFieldsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <wsdl:input message="tns:UserPermissionsHttpPostIn" />
+      <wsdl:output message="tns:UserPermissionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <wsdl:input message="tns:UserPermissionsListHttpPostIn" />
+      <wsdl:output message="tns:UserPermissionsListHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <wsdl:input message="tns:SetTrusteesHttpPostIn" />
+      <wsdl:output message="tns:SetTrusteesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <wsdl:input message="tns:RemoveTrusteesHttpPostIn" />
+      <wsdl:output message="tns:RemoveTrusteesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <wsdl:input message="tns:GetDocumentVersionsHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentVersionsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <wsdl:input message="tns:RetriveDocumentHttpPostIn" />
+      <wsdl:output message="tns:RetriveDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <wsdl:input message="tns:GetBinaryDocumentHttpPostIn" />
+      <wsdl:output message="tns:GetBinaryDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <wsdl:input message="tns:CreateDocumentFromStreamHttpPostIn" />
+      <wsdl:output message="tns:CreateDocumentFromStreamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <wsdl:input message="tns:CreateDocumentFromFileHttpPostIn" />
+      <wsdl:output message="tns:CreateDocumentFromFileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <wsdl:input message="tns:CreateDocumentVersionHttpPostIn" />
+      <wsdl:output message="tns:CreateDocumentVersionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <wsdl:input message="tns:CreatePaperProfileHttpPostIn" />
+      <wsdl:output message="tns:CreatePaperProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <wsdl:input message="tns:UpdateProfileHttpPostIn" />
+      <wsdl:output message="tns:UpdateProfileHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <wsdl:input message="tns:DocumentCheckOutHttpPostIn" />
+      <wsdl:output message="tns:DocumentCheckOutHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <wsdl:input message="tns:DocumentCheckInHttpPostIn" />
+      <wsdl:output message="tns:DocumentCheckInHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <wsdl:input message="tns:DeleteDocumentHttpPostIn" />
+      <wsdl:output message="tns:DeleteDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <wsdl:input message="tns:VersionHttpPostIn" />
+      <wsdl:output message="tns:VersionHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <wsdl:input message="tns:GetLibrariesAvailableHttpPostIn" />
+      <wsdl:output message="tns:GetLibrariesAvailableHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <wsdl:input message="tns:FolderCreateHttpPostIn" />
+      <wsdl:output message="tns:FolderCreateHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <wsdl:input message="tns:FolderDeleteHttpPostIn" />
+      <wsdl:output message="tns:FolderDeleteHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <wsdl:input message="tns:FolderAddDocumentHttpPostIn" />
+      <wsdl:output message="tns:FolderAddDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <wsdl:input message="tns:FolderRemoveDocumentHttpPostIn" />
+      <wsdl:output message="tns:FolderRemoveDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <wsdl:input message="tns:FolderGetContentsHttpPostIn" />
+      <wsdl:output message="tns:FolderGetContentsHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <wsdl:input message="tns:FolderSetTrusteesHttpPostIn" />
+      <wsdl:output message="tns:FolderSetTrusteesHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <wsdl:input message="tns:GetDocumentStreamHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentStreamHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <wsdl:input message="tns:LastContentUpdateTimeHttpPostIn" />
+      <wsdl:output message="tns:LastContentUpdateTimeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <wsdl:input message="tns:PreventCCUpdatesOnDocHttpPostIn" />
+      <wsdl:output message="tns:PreventCCUpdatesOnDocHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <wsdl:input message="tns:AuthorizeInternetHttpPostIn" />
+      <wsdl:output message="tns:AuthorizeInternetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <wsdl:input message="tns:UnauthorizeInternetHttpPostIn" />
+      <wsdl:output message="tns:UnauthorizeInternetHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <wsdl:input message="tns:GetInternetPublicationInfoHttpPostIn" />
+      <wsdl:output message="tns:GetInternetPublicationInfoHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <wsdl:input message="tns:MakeRecordHttpPostIn" />
+      <wsdl:output message="tns:MakeRecordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <wsdl:input message="tns:UnmakeRecordHttpPostIn" />
+      <wsdl:output message="tns:UnmakeRecordHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <wsdl:input message="tns:TermStoreCacheHttpPostIn" />
+      <wsdl:output message="tns:TermStoreCacheHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSIDBDocsSoap" type="tns:WSIDBDocsSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddEntryToLog">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/AddEntryToLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Search_ReturnString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/WebLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetDefaultLibrary" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/ExecuteSQLPassThrough" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/TableLookUp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/EncryptString" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetAllProfileFields" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UserPermissions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UserPermissionsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/SetTrustees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/RemoveTrustees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetDocumentVersions" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/RetriveDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetBinaryDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreateDocumentFromStream" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreateDocumentFromFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreateDocumentVersion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreatePaperProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UpdateProfile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/DocumentCheckOut" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/DocumentCheckIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/DeleteDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Version" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetLibrariesAvailable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderCreate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderDelete" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderAddDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderRemoveDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderGetContents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderSetTrustees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetDocumentStream" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDocumentStream">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UpdateDocumentStream" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryDB">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/QueryDB" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/LastContentUpdateTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/PreventCCUpdatesOnDoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/AuthorizeInternet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UnauthorizeInternet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetInternetPublicationInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/MakeRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UnmakeRecord" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <soap:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/TermStoreCache" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSIDBDocsSoap12" type="tns:WSIDBDocsSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddEntryToLog">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/AddEntryToLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Search" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Search_ReturnString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/WebLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetDefaultLibrary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/ExecuteSQLPassThrough" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/TableLookUp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/EncryptString" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetAllProfileFields" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UserPermissions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UserPermissionsList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/SetTrustees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/RemoveTrustees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetDocumentVersions" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/RetriveDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetBinaryDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreateDocumentFromStream" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreateDocumentFromFile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreateDocumentVersion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/CreatePaperProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UpdateProfile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/DocumentCheckOut" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/DocumentCheckIn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/DeleteDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/Version" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetLibrariesAvailable" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderCreate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderDelete" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderAddDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderRemoveDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderGetContents" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/FolderSetTrustees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetDocumentStream" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateDocumentStream">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UpdateDocumentStream" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryDB">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/QueryDB" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/LastContentUpdateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/PreventCCUpdatesOnDoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/AuthorizeInternet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UnauthorizeInternet" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/GetInternetPublicationInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/MakeRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/UnmakeRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <soap12:operation soapAction="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx/TermStoreCache" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSIDBDocsHttpGet" type="tns:WSIDBDocsHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AddEntryToLog">
+      <http:operation location="/AddEntryToLog" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <http:operation location="/Search" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <http:operation location="/Search_ReturnString" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <http:operation location="/WebLogin" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <http:operation location="/GetDefaultLibrary" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <http:operation location="/ExecuteSQLPassThrough" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <http:operation location="/TableLookUp" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <http:operation location="/EncryptString" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <http:operation location="/GetAllProfileFields" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <http:operation location="/UserPermissions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <http:operation location="/UserPermissionsList" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <http:operation location="/SetTrustees" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <http:operation location="/RemoveTrustees" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <http:operation location="/GetDocumentVersions" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <http:operation location="/RetriveDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <http:operation location="/GetBinaryDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <http:operation location="/CreateDocumentFromStream" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <http:operation location="/CreateDocumentFromFile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <http:operation location="/CreateDocumentVersion" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <http:operation location="/CreatePaperProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <http:operation location="/UpdateProfile" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <http:operation location="/DocumentCheckOut" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <http:operation location="/DocumentCheckIn" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <http:operation location="/DeleteDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <http:operation location="/Version" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <http:operation location="/GetLibrariesAvailable" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <http:operation location="/FolderCreate" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <http:operation location="/FolderDelete" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <http:operation location="/FolderAddDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <http:operation location="/FolderRemoveDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <http:operation location="/FolderGetContents" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <http:operation location="/FolderSetTrustees" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <http:operation location="/GetDocumentStream" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <http:operation location="/LastContentUpdateTime" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <http:operation location="/PreventCCUpdatesOnDoc" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <http:operation location="/AuthorizeInternet" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <http:operation location="/UnauthorizeInternet" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <http:operation location="/GetInternetPublicationInfo" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <http:operation location="/MakeRecord" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <http:operation location="/UnmakeRecord" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <http:operation location="/TermStoreCache" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="WSIDBDocsHttpPost" type="tns:WSIDBDocsHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AddEntryToLog">
+      <http:operation location="/AddEntryToLog" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <http:operation location="/Search" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search_ReturnString">
+      <http:operation location="/Search_ReturnString" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Login">
+      <http:operation location="/Login" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WebLogin">
+      <http:operation location="/WebLogin" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDefaultLibrary">
+      <http:operation location="/GetDefaultLibrary" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQLPassThrough">
+      <http:operation location="/ExecuteSQLPassThrough" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TableLookUp">
+      <http:operation location="/TableLookUp" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptString">
+      <http:operation location="/EncryptString" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllProfileFields">
+      <http:operation location="/GetAllProfileFields" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissions">
+      <http:operation location="/UserPermissions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserPermissionsList">
+      <http:operation location="/UserPermissionsList" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetTrustees">
+      <http:operation location="/SetTrustees" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveTrustees">
+      <http:operation location="/RemoveTrustees" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentVersions">
+      <http:operation location="/GetDocumentVersions" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RetriveDocument">
+      <http:operation location="/RetriveDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBinaryDocument">
+      <http:operation location="/GetBinaryDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromStream">
+      <http:operation location="/CreateDocumentFromStream" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentFromFile">
+      <http:operation location="/CreateDocumentFromFile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateDocumentVersion">
+      <http:operation location="/CreateDocumentVersion" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreatePaperProfile">
+      <http:operation location="/CreatePaperProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateProfile">
+      <http:operation location="/UpdateProfile" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckOut">
+      <http:operation location="/DocumentCheckOut" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentCheckIn">
+      <http:operation location="/DocumentCheckIn" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteDocument">
+      <http:operation location="/DeleteDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Version">
+      <http:operation location="/Version" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLibrariesAvailable">
+      <http:operation location="/GetLibrariesAvailable" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderCreate">
+      <http:operation location="/FolderCreate" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderDelete">
+      <http:operation location="/FolderDelete" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderAddDocument">
+      <http:operation location="/FolderAddDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="FolderRemoveDocument">
+      <http:operation location="/FolderRemoveDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="FolderGetContents">
+      <http:operation location="/FolderGetContents" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FolderSetTrustees">
+      <http:operation location="/FolderSetTrustees" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentStream">
+      <http:operation location="/GetDocumentStream" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LastContentUpdateTime">
+      <http:operation location="/LastContentUpdateTime" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PreventCCUpdatesOnDoc">
+      <http:operation location="/PreventCCUpdatesOnDoc" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="AuthorizeInternet">
+      <http:operation location="/AuthorizeInternet" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UnauthorizeInternet">
+      <http:operation location="/UnauthorizeInternet" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="GetInternetPublicationInfo">
+      <http:operation location="/GetInternetPublicationInfo" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="Body" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MakeRecord">
+      <http:operation location="/MakeRecord" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="UnmakeRecord">
+      <http:operation location="/UnmakeRecord" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output />
+    </wsdl:operation>
+    <wsdl:operation name="TermStoreCache">
+      <http:operation location="/TermStoreCache" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WSIDBDocs">
+    <wsdl:port name="WSIDBDocsSoap" binding="tns:WSIDBDocsSoap">
+      <soap:address location="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSIDBDocsSoap12" binding="tns:WSIDBDocsSoap12">
+      <soap12:address location="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSIDBDocsHttpGet" binding="tns:WSIDBDocsHttpGet">
+      <http:address location="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx" />
+    </wsdl:port>
+    <wsdl:port name="WSIDBDocsHttpPost" binding="tns:WSIDBDocsHttpPost">
+      <http:address location="http://idbdocs.iadb.org/WSDocs/WSIDBDocs.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

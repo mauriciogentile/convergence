@@ -14,6 +14,7 @@ namespace Idb.Sec.Convergence.Daemon
     public class DistributionMonitorWorker : Worker
     {
         private readonly string _connString;
+        private readonly IDocumentStorage _documentStorage;
         private readonly Func<IWfeClient> _clientFactory;
 
         public int LastDays { get; set; }
@@ -23,10 +24,11 @@ namespace Idb.Sec.Convergence.Daemon
         public string LastDistrState { get; set; }
         public string LastDistrAction { get; set; }
 
-        public DistributionMonitorWorker(string connString, Func<IWfeClient> clientFactory, ILogger logger)
+        public DistributionMonitorWorker(string connString, IDocumentStorage documentStorage, Func<IWfeClient> clientFactory, ILogger logger)
             : base(logger)
         {
             _connString = connString;
+            _documentStorage = documentStorage;
             _clientFactory = clientFactory;
         }
 
@@ -57,7 +59,8 @@ namespace Idb.Sec.Convergence.Daemon
                             continue;
                         }
                         var cd = await client.GetCustomDataAsync(x.WorkflowId);
-                        if (!TryAddDistribution(x, cd)) continue;
+                        var searchResults = await _documentStorage.SearchByCodeAsync(x.DocId);
+                        if (!TryAddDistribution(x, searchResults, cd)) continue;
                         await client.SetCustomDataAsync(x.WorkflowId, cd);
                         action = instance.CurrentState == InitialDistrState ? InitialDistrAction : LastDistrAction;
                         await client.ExecuteActionAsync(x.WorkflowId, action, instance.CurrentState);
@@ -70,50 +73,50 @@ namespace Idb.Sec.Convergence.Daemon
             }
         }
 
-        static bool TryAddDistribution(DistributionRecord record, dynamic cd)
+        static bool TryAddDistribution(DistributionRecord record, IEnumerable<Document> docs, dynamic cd)
         {
-            var newEntry = new Dictionary<string, object>
+            var distributions = (cd["distributions"] as IList<object>) ?? new List<object>();
+            var count = distributions.Count;
+            foreach (var doc in docs)
             {
-                { "distributedOn", record.DistributedOn },
-                { "committeeId", record.CommitteeId },
-                { "version", record.Version },
-                { "versionId", record.VersionId },
-                { "procedure", record.Procedure }
-            };
-
-            var distributions = cd["distributions"] as IList<object>;
-            if (distributions == null || !Helpers.DoesPropertyExist(cd, "distributions"))
-            {
-                cd["distributions"] = new List<object> { newEntry };
-                return true;
-            }
-
-            var discard = false;
-            distributions.ToList().ForEach(x =>
-            {
-                var dict = x as Dictionary<string, object>;
-                if (dict == null) return;
-                var id1 = GetId(dict);
-                var id2 = GetId(newEntry);
-                if (id1 == id2)
+                var newEntry = new Dictionary<string, object>
                 {
-                    discard = true;
-                }
-            });
+                    {"distributedOn", record.DistributedOn},
+                    {"committeeId", record.CommitteeId},
+                    {"version", record.Version},
+                    {"docId", doc.Id},
+                    {"lang", doc.Language},
+                    {"url", doc.Url},
+                    {"procedure", record.Procedure}
+                };
 
-            if (discard)
-            {
-                return false;
+                var discard = false;
+                distributions.ToList().ForEach(x =>
+                {
+                    var dict = x as Dictionary<string, object>;
+                    if (dict == null) return;
+                    var id1 = GetId(dict);
+                    var id2 = GetId(newEntry);
+                    if (id1 == id2)
+                    {
+                        discard = true;
+                    }
+                });
+
+                if (discard)
+                {
+                    continue;
+                }
+
+                distributions.Add(newEntry);
             }
 
-            distributions.Add(newEntry);
-
-            return true;
+            return count != distributions.Count;
         }
 
         static string GetId(IDictionary<string, object> dict)
         {
-            return string.Format("{0}_{1}_{2}_{3}", dict["version"], dict["versionId"], dict["procedure"], dict["committeeId"]);
+            return string.Format("{0}_{1}_{2}_{3}_{4}", dict["version"], dict["docId"], dict["procedure"], dict["committeeId"], dict["lang"]);
         }
     }
 }
