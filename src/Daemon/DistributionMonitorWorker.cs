@@ -117,7 +117,19 @@ namespace Idb.Sec.Convergence.Daemon
 
         static string GetId(IDictionary<string, object> dict)
         {
-            return string.Format("{0}_{1}_{2}_{3}_{4}", dict["version"], dict["docId"], dict["procedure"], dict["committeeId"], dict["lang"]);
+            object version;
+            object docId;
+            object procedure;
+            object committee;
+            object lang;
+
+            dict.TryGetValue("version", out version);
+            dict.TryGetValue("docId", out docId);
+            dict.TryGetValue("procedure", out procedure);
+            dict.TryGetValue("committeeId", out committee);
+            dict.TryGetValue("lang", out lang);
+
+            return string.Format("{0}_{1}_{2}_{3}_{4}", version, docId, procedure, committee, lang);
         }
     }
 }
