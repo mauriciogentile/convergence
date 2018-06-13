@@ -15,10 +15,7 @@ namespace Idb.Sec.Convergence.Daemon.Workers
 
         public int LastDays { get; set; }
         public int MaxResults { get; set; }
-        public string InitialDistrState { get; set; }
-        public string InitialDistrAction { get; set; }
-        public string LastDistrState { get; set; }
-        public string LastDistrAction { get; set; }
+        public Dictionary<string, string> ValidStateActions { get; set; }
 
         protected RecordsMonitor(IDocumentStorage documentStorage, Func<IWfeClient> clientFactory,
             ILogger logger)
@@ -41,17 +38,20 @@ namespace Idb.Sec.Convergence.Daemon.Workers
                     Logger.Debug(string.Format("Processing pipeline '{0}' for committee '{1}' on workflow '{2}'", x.Pipeline, x.CommitteeId, x.WorkflowId));
                     var instance = await client.GetWorkflowInstanceAsync(x.WorkflowId);
                     currentState = instance.CurrentState;
-                    if (currentState != InitialDistrState && currentState != LastDistrState)
+                    if (!ValidStateActions.ContainsKey(currentState))
                     {
-                        Logger.Debug(string.Format("Skipping pipeline '{0}' for committee '{1}' on workflow '{2}'", x.Pipeline, x.CommitteeId, x.WorkflowId));
+                        Logger.Debug(string.Format("Skipping pipeline '{0}' for committee '{1}' on workflow '{2}'. Invalid state '{3}'", x.Pipeline, x.CommitteeId, x.WorkflowId, currentState));
                         continue;
                     }
                     var cd = await client.GetCustomDataAsync(x.WorkflowId);
                     x.Documents = await _documentStorage.SearchByCodeAsync(x.DocId);
+                    
+                    //continue if custom data is not updated
                     if (!TryAddInfo(x, cd)) continue;
+
                     await client.SetCustomDataAsync(x.WorkflowId, cd);
-                    action = instance.CurrentState == InitialDistrState ? InitialDistrAction : LastDistrAction;
-                    await client.ExecuteActionAsync(x.WorkflowId, action, instance.CurrentState);
+                    action = ValidStateActions[currentState];
+                    await client.ExecuteActionAsync(x.WorkflowId, action, currentState);
                 }
                 catch (Exception exception)
                 {
