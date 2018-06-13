@@ -57,12 +57,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DistributionMonitorWorker.cs" />
-    <Compile Include="DistributionRecord.cs" />
+    <Compile Include="Workers\RecordsMonitor.cs" />
+    <Compile Include="Records\AgendaRecord.cs" />
+    <Compile Include="Workers\AgendaMonitor.cs" />
+    <Compile Include="Workers\DistributionMonitor.cs" />
+    <Compile Include="Records\DistributionRecord.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="DocumentStorage.cs" />
     <Compile Include="Helpers.cs" />
     <Compile Include="IDocumentStorage.cs" />
+    <Compile Include="Records\PipelineRecord.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\IdbDocs\Reference.cs">

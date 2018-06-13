@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using Idb.CommonServices.Util.Diagnostic;
 using Idb.CommonServices.Util.Tasks;
+using Idb.Sec.Convergence.Daemon.Workers;
 using Sec.Wfe.RestClient;
 using Topshelf;
 
@@ -52,7 +53,7 @@ namespace Idb.Sec.Convergence.Daemon
             var factory = new Func<IWfeClient>(() => new Client(wfeApiUrl).Login(clientId, clientSecret, username, password));
             var docStorage = new DocumentStorage(ezShareAccessCode);
 
-            var monitorWorker = new DistributionMonitorWorker(connString, docStorage, factory, logger)
+            var distrMonitor = new DistributionMonitor(connString, docStorage, factory, logger)
             {
                 LastDays = lastDays,
                 SleepPeriod = TimeSpan.FromMinutes(ditributionSleep),
@@ -63,7 +64,18 @@ namespace Idb.Sec.Convergence.Daemon
                 LastDistrState = state2
             };
 
-            return new List<IWorker>(new IWorker[] { monitorWorker });
+            var agendaMonitor = new AgendaMonitor(connString, docStorage, factory, logger)
+            {
+                LastDays = lastDays,
+                SleepPeriod = TimeSpan.FromMinutes(ditributionSleep),
+                MaxResults = top,
+                InitialDistrAction = action1,
+                InitialDistrState = state1,
+                LastDistrAction = action2,
+                LastDistrState = state2
+            };
+
+            return new List<IWorker>(new IWorker[] { distrMonitor, agendaMonitor });
         }
     }
 }
